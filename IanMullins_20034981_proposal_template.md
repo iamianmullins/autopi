@@ -13,19 +13,30 @@ someone will be notified there may have been a road traffic accident and prompte
 ## Tools, Technologies and Equipment
 Hardware: 	
 			Raspberry pi 3b+
+			Raspberry pi camera v2 module
 			Sensehat for raspberry pi
+			Mini black hat hack3r
+			Push buttons
+			Leds'
+			Jumper wires
 			USB to micro USB cable
 			Car power outlet to USB adapter
 			Mobile phone with tethered internet connection
 
 Technologies: 
+            Firebase - realtime DB and cloud storage
 			IOT Platform - Thinsgpeak via HTTP request protocol
 			React/Notification - Email via IFTTT webhooks service HTTP request on event(potential RTA)
 
-Language:	Python
+Languages:	Python
+            Bash
+            HTML
+            CSS
+            Javascript
 
-IDE:		Geany IDE
+IDE:		Thonny
 Editor: 	Nano
+            Glitch web application service
 
 
 
