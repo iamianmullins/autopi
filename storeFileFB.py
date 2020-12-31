@@ -7,8 +7,9 @@ import re
 #Firebase credentials
 cred=credentials.Certificate('./serviceAccountKey.json')
 firebase_admin.initialize_app(cred, {
-    'storageBucket': 'blackbox-57b40.appspot.com',
-    'databaseURL': 'https://blackbox-57b40-default-rtdb.firebaseio.com/'
+    'storageBucket': 'autopi-48de4.appspot.com',
+    'databaseURL': 'https://autopi-48de4-default-rtdb.firebaseio.com/'
+
 })
 
 bucket = storage.bucket()
@@ -37,11 +38,11 @@ def pushPhotoDb(fileLoc, time):
     #Push file reference to image in Realtime DB
     homerefPto.push({
         'image': filename,
-        'timestamp': time,
-        'lat' : lat,
-        'long' : long,
-        'alt' : alt,
-        'speed' : speed
+        'timestampPic': time,
+        'latPic' : lat,
+        'longPic' : long,
+        'altPic' : alt,
+        'speedPic' : speed
         }
     )
 
@@ -66,11 +67,11 @@ def pushVidDb(fileLoc, time):
     #Push file reference to image in Realtime DB
     homerefVid.push({
         'vid': filename,
-        'timestamp': time,
-        'lat' : lat,
-        'long' : long,
-        'alt' : alt,
-        'speed' : speed
+        'timestampVid': time,
+        'latVid' : lat,
+        'longVid' : long,
+        'altVid' : alt,
+        'speedVid' : speed
         }
     )
 

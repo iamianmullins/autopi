@@ -85,7 +85,7 @@ def collision(averageX,  averageY,  averageZ, maxX, maxY, maxZ, x, y, z):
                #and entry.is_file():
                print("Saving to Firebase: ", file.path)
                fileName = file.path
-               storeFileFB.pushPhotoDb(fileName, timeStamp)
+#               storeFileFB.pushPhotoDb(fileName, timeStamp)
                storeFileFB.storePhotoFb(fileName)
              elif file.name.endswith(ext2):                                                                                                                                                                                                                   #and entry.is_file():
                print("Saving to Firebase: ", file.path)
@@ -95,6 +95,7 @@ def collision(averageX,  averageY,  averageZ, maxX, maxY, maxZ, x, y, z):
            sense.clear()
            for led in leds:
                led.off()
+           subprocess.call("./removeOrigH264.sh")
            sys.exit("Closing blackbox...")
      else:
          #print("No accident detected")
@@ -161,7 +162,7 @@ while True:
         curTime =time.gmtime()
         curMin = curTime.tm_min
         curSec = curTime.tm_sec
-        print("Cursec",curSec)
+        #print("Cursec",curSec)
         #Resets video number to zero if video count >2
         # Only video 0,1,2 are maintained on the device
         if vidNum > 2:

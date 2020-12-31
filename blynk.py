@@ -11,7 +11,7 @@ blynk = blynklib.Blynk(BLYNK_AUTH)
 
 @blynk.handle_event('write V2')
 def main(pin, value):
-    print(value)
+    #print(value)
     blynkValA=value[0]
     blynkValB=value[1]
     blynkValC=value[2]
