@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>AutoPi Dashboard</title>
+
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+  <!-- Custom javascript file -->
+  <script src="/script.js" ></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHRMpcPHP8E82WBEqk0d29tfVgfP0DB9Y&callback=initMap&libraries=&v=weekly"
+  defer
+  ></script>
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <!------------        ------------>
+    <!------------ Navbar ------------>
+    <!------------        ------------>
+  <div class="ui huge top fixed menu">
+    <div class="item">
+      AutoPi
+    </div>
+    <a href="#anchor1" class="item">Current Location &nbsp &nbsp
+      <i class="map icon"></i>
+    </a>
+    <a href="#anchor2" class="item">PiPic &nbsp &nbsp
+      <i class="retro camera icon"></i>
+    </a>
+    <a href="#anchor3" class="item">PiVid &nbsp &nbsp
+      <i class="video camera icon"></i>
+    </a>
+  </div>
+  <div class="container">
+    
+    <!------------------------>
+    <!------------ Main Map ------------>
+    <!-- Provides current location of the user in realtime -->     
+    <div id="anchor1" class="row">     
+      <div class="sixteen wide column">
+       <section class="ui inverted stacked segment">
+        <h2 class="ui center aligned icon header">
+          <i class="circular map  icon"></i>
+          PiMap
+        </h2>
+      </section>
+    </div>
+    <div id="wia" class="column">
+      <br>
+      <hr>
+      <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://widgets.wia.io/embed/wgt_Q8433PW6/dev_TAhhMfLO"></iframe>
+    </div>
+
+  </div>
+
+  <br>  <hr>   <br>
+</div>
+  
+<!------------------------>
+<!------------ User photo ------------>
+<!-- Contains the latest photo taken an autoPi device -->   
+<div class="ui grid">
+  <div id="anchor2"></div>
+  <div class="sixteen wide column">
+   <section class="ui inverted stacked segment">
+    <h2 class="ui center aligned icon header">
+      <i class="circular retro camera  icon"></i>
+      PiPic
+    </h2>
+  </section>
+</div>
+
+<div class="eight wide column">
+ <section class="ui inverted stacked segment">
+  <a href="https://google.com" class="ui fluid image">
+    <img id="image" />
+  </a>
+
+</section>
+</div>
+<div class="eight wide column">
+ 
+
+<!------------------------>
+ <!--The div element for PiPic map -->
+<!------------------------> 
+ <div id="map"></div>
+</div>
+</div>
+
+
+<!------------------------>
+<!------------ PiPic table ------------>
+<!-- Metadata associated with the photo currently displayed -->   
+<table class="ui four column celled selectable center aligned inverted table">
+  <thead>
+    <tr>
+      <th>TimeStamp</th>
+      <th>Description</th>
+      <th>Temperature</th>
+      <th>Cloud Coverage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td id="timestampPic"></td>   
+      <td id="descriptionPic"></td>
+      <td id="temperaturePic"></td>
+      <td id="coveragePic"></td>
+    </tr>
+  </tbody>
+</table>
+<table class="ui four column celled selectable center aligned inverted table">
+  <thead>
+    <tr>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Speed</th>
+      <th>Altitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="latitudePic"></td>
+      <td id="longitudePic"></td>
+      <td id="speedPic"></td>     
+      <td id="altPic"></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>  <hr>   <br>
+  
+    <!------------------------>
+    <!------------ User video ------------>
+    <!-- Contains the video footage of potential road traffic accident taken an autoPi device following detected collision -->   
+<div id="anchor3"></div>
+<div class="sixteen wide column">
+ <section class="ui inverted stacked segment">
+  <h2 class="ui center aligned icon header">
+    <i class="circular video camera  icon"></i>
+    PiVids
+  </h2>
+</section>
+</div>
+
+  
+<!------------------------>
+<!------------ User Pivid, 0,1 and 2 ------------>
+<!-- Short clips of events leading up to RTA -->   
+<br>  <br>
+<div id="videos" class="ui grid">
+  <div class="eight wide column">
+   <section class="ui inverted stacked segment">
+    <video width="100%" height="100%" controls src="https://firebasestorage.googleapis.com/v0/b/autopi-48de4.appspot.com/o/pivid0.mp4?alt=media&token=df44142a-a1da-46d3-b845-570cfcd207a6">
+    </video>
+  </section>
+</div>
+
+<div class="eight wide column">
+  <section class="ui inverted stacked segment">
+   <video width="100%" height="100%" controls src="https://firebasestorage.googleapis.com/v0/b/autopi-48de4.appspot.com/o/pivid1.mp4?alt=media&token=bcf88309-ff57-4dce-b26c-0d4ccaef502e">
+   </video>
+ </section>
+</div>
+
+</div>
+
+<div class="ui grid">    
+  <div class="eight wide column">
+   <section class="ui inverted stacked segment">
+    <video width="100%" height="100%" controls src="https://firebasestorage.googleapis.com/v0/b/autopi-48de4.appspot.com/o/pivid2.mp4?alt=media&token=e39bab2a-1f75-4dc2-8ade-d1008f2e5ef8">
+    </video>
+  </section>
+</div>
+
+
+<div class="eight wide column">
+  
+<!------------------------>
+ <!--The div element for PiVid map -->
+<!------------------------> 
+ <div id="map2"></div>
+</div>
+</div>
+
+
+<!------------------------>
+<!------------ Pivid tables ------------>
+<!-- Metadata associated with piVid videos relating to weather conditions, location and speed at impact -->   
+<table class="ui four column celled selectable center aligned inverted table">
+  <thead>
+    <tr>
+      <th>TimeStamp</th>
+      <th>Description</th>
+      <th>Temperature</th>
+      <th>Cloud Coverage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td id="timestampVid"></td>   
+      <td id="descriptionVid"></td>
+      <td id="temperatureVid"></td>
+      <td id="coverageVid"></td>
+    </tr>
+  </tbody>
+</table>
+<table class="ui four column celled selectable center aligned inverted table">
+  <thead>
+    <tr>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Speed</th>
+      <th>Altitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="latitudeVid"></td>
+      <td id="longitudeVid"></td>
+      <td id="speedVid"></td>     
+      <td id="altVid"></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<div class ="footer">
+  <hr>
+</div>
+</body>
+</html>
