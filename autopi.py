@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-#autopi_4.2.py
-
 
 #Imports for hardware
 #Buttons, Leds, sensehat, camera
@@ -61,18 +59,19 @@ maxX, maxY, maxZ=100,100,100
 #Mp4 files files and jpg are sent to telegram bot function and shared to user phone
 #All files and location data are pushed to firebase realtime db and storage
 def collision(averageX,  averageY,  averageZ, maxX, maxY, maxZ, x, y, z):
-     if recording == True and ((x > (averageX*5)) or (y > (averageY*5)) or (z > (averageZ*5))):
+     if recording == True and ((x > (averageX*10)) or (y > (averageY*10)) or (z > (averageZ*10))):
          #Set all LEDs' to blink to indicate incident
          for led in leds:
            led.blink()
          timeStamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-         sense.show_letter("!",text_colour=red,back_colour=white)
+         sense.show_letter("!",text_colour=red)
          print("Collision Detected!!")
          camera.stop_recording()
+         subprocess.call("./killAutoPi.sh")
          #Convert all existing h264 files in images directory to mp4
          convertFiles.updateVideos()
          #Pass current timestamp to telegram functions
-         botbox2.postTelegramPic(timeStamp)
+         botbox2.postTelegramMsg(timeStamp)
          botbox2.postTelegramVid(timeStamp)
          directory = './images/'
          ext1 = ("jpg")
@@ -96,7 +95,7 @@ def collision(averageX,  averageY,  averageZ, maxX, maxY, maxZ, x, y, z):
            for led in leds:
                led.off()
            subprocess.call("./removeOrigH264.sh")
-           sys.exit("Closing blackbox...")
+           powerOff()
      else:
          #print("No accident detected")
          return True
@@ -109,7 +108,7 @@ def snapShot():
     fileLoc = './images/piPic.jpg'
     timeStamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     #print("Pipic taken")
-    sense.show_letter("P",text_colour=blue,back_colour=white)
+    sense.show_letter("P",text_colour=blue)
     blueLed.on()
     blueLed.off()
     camera.capture(fileLoc, use_video_port=True)
@@ -117,10 +116,10 @@ def snapShot():
     storeFileFB.storePhotoFb(fileLoc)
     storeFileFB.pushPhotoDb(fileLoc, timeStamp)
     sense.clear()
-    
+
 def sendLocation():
     timeStamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    sense.show_letter("L",text_colour=green,back_colour=white)
+    sense.show_letter("L",text_colour=green)
     greenLed.on()
     greenLed.off()
     botbox2.postTelegramMsg(timeStamp)
@@ -132,10 +131,10 @@ def powerOff():
     print("Power Off")
     sense.clear(100, 100, 100)
     camera.stop_recording()
-    sense.show_message("OFF",text_colour=orange,back_colour=white)
+    sense.show_message("OFF",text_colour=orange)
     time.sleep(2)
     sense.clear()
-    check_call(['sudo', 'poweroff'])
+    os.system('sudo shutdown now -h')
 
 #GPIO button assignment
 photoButton = Button(18, hold_time=0.5)
@@ -179,6 +178,7 @@ while True:
         #If recording variable is set to false, befin recording and set
         # recording variable to true
         if recording == False:
+            camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print("start recording")
             camera.start_recording('./images/pivid{}.h264'.format(vidNum))
             vidNum+=1

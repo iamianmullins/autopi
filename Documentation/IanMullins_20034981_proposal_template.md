@@ -5,10 +5,10 @@
 -- Road traffic accident detector/reporter
 A sensor based device using Raspberry Pi 3b+ SBC. Intended use is for the automotive domain.
 The device should be powered via usb through the vehicle power outlet.
-The device will sense and provide enrinonmental data such as vehicle/device orientation using the Raspberry Pi sense hat.
+The device will sense and provide enrinonmental data such as vehicle/device acceleration using the Raspberry Pi sense hat.
 This data will be sent to an IOT platform via HTTP protocol. If the data meets certain criteria such as 
-a substantial change in the device orientation in a short period of time eg the vehicle is upside down or pushed/shunted 
-someone will be notified there may have been a road traffic accident and prompted to check up on the vehicle owner/driver.
+a substantial change in the device acceleration in a short period of time eg the vehicle is pushed/shunted/collides with something. 
+Someone will be notified there may have been a road traffic accident and prompted to check up on the vehicle owner/driver.
 
 ## Tools, Technologies and Equipment
 Hardware: 	
@@ -25,8 +25,15 @@ Hardware:
 
 Technologies: 
             Firebase - realtime DB and cloud storage
-			IOT Platform - Thinsgpeak via HTTP request protocol
+			IOT Platform - 	Thinsgpeak via HTTP request protocol
+							Wia.io via MQTT protocol
+							Blynk restful API				
 			React/Notification - Email via IFTTT webhooks service HTTP request on event(potential RTA)
+
+API's:		Openweathermap.org - Used to obtain current location weather for Glitch web app
+			Telegram - Telegram BOT API - Messaging, images, location, photo and video
+			Google maps API
+
 
 Languages:	Python
             Bash

@@ -1,8 +1,11 @@
+#!/usr/bin/python3
+
 import firebase_admin
 import linecache
 from firebase_admin import credentials, firestore, storage, db
 import os
 import re
+import getWeather
 
 #Firebase credentials
 cred=credentials.Certificate('./serviceAccountKey.json')
@@ -34,6 +37,7 @@ def pushPhotoDb(fileLoc, time):
     long = re.sub('[\n]', '', linecache.getline(gpsDataFile, 2))
     alt = re.sub('[\n]', '', linecache.getline(gpsDataFile, 3))
     speed = re.sub('[\n]', '', linecache.getline(gpsDataFile, 4))
+    weather=getWeather.getWeather(lat,long)
     filename=os.path.basename(fileLoc)
     #Push file reference to image in Realtime DB
     homerefPto.push({
@@ -42,7 +46,10 @@ def pushPhotoDb(fileLoc, time):
         'latPic' : lat,
         'longPic' : long,
         'altPic' : alt,
-        'speedPic' : speed
+        'speedPic' : speed,
+        'descriptionPic' : weather[0],
+        'coveragePic' : weather[1],
+        'temperaturePic' : weather[2]
         }
     )
 
@@ -63,6 +70,7 @@ def pushVidDb(fileLoc, time):
     long = re.sub('[\n]', '', linecache.getline(gpsDataFile, 2))
     alt = re.sub('[\n]', '', linecache.getline(gpsDataFile, 3))
     speed = re.sub('[\n]', '', linecache.getline(gpsDataFile, 4))
+    weather=getWeather.getWeather(lat,long)
     filename=os.path.basename(fileLoc)
     #Push file reference to image in Realtime DB
     homerefVid.push({
@@ -71,7 +79,10 @@ def pushVidDb(fileLoc, time):
         'latVid' : lat,
         'longVid' : long,
         'altVid' : alt,
-        'speedVid' : speed
+        'speedVid' : speed,
+        'descriptionVid' : weather[0],
+        'coverageVid' : weather[1],
+        'temperatureVid' : weather[2]
         }
     )
 

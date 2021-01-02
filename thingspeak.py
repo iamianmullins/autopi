@@ -2,8 +2,10 @@
 import time
 import sys
 from urllib.request import urlopen
+import linecache
 import  json
 import re
+from random import randrange
 
 
 #Thinkgpeak write key
@@ -20,13 +22,12 @@ def writeData(lat, long, alt, speed):
 
 def getData():
     gpsDataFile = './gps.txt'
-    file = open(gpsDataFile)
-    gpsData = file.readlines()
-    lat = re.sub('[\n]', '', gpsData[0])
-    long = re.sub('[\n]', '', gpsData[1])
-    alt = re.sub('[\n]', '', gpsData[2])
-    speed = re.sub('[\n]', '', gpsData[3])
-    print(speed)
+    lat = re.sub('[\n]', '', linecache.getline(gpsDataFile, 1))
+    long = re.sub('[\n]', '', linecache.getline(gpsDataFile, 2))
+    alt = re.sub('[\n]', '', linecache.getline(gpsDataFile, 3))
+    #speed = re.sub('[\n]', '', linecache.getline(gpsDataFile, 4))
+#   Thingspeak Test - Random speed
+    speed = randrange(85, 90)
     data=[lat, long, alt, speed]
     return data
 
@@ -37,7 +38,7 @@ def main():
     long = data[1]
     alt = data[2]
     speed = data[3]
-    print(speed)
+#    print(speed)
     writeData(lat, long, alt, speed)
 
 
