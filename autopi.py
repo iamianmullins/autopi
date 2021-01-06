@@ -95,7 +95,8 @@ def collision(averageX,  averageY,  averageZ, maxX, maxY, maxZ, x, y, z):
            for led in leds:
                led.off()
            subprocess.call("./removeOrigH264.sh")
-           powerOff()
+           sense.clear()
+#           powerOff()
      else:
          #print("No accident detected")
          return True
@@ -120,8 +121,8 @@ def snapShot():
 def sendLocation():
     timeStamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     sense.show_letter("L",text_colour=green)
-    greenLed.on()
-    greenLed.off()
+    blueLed.on()
+    blueLed.off()
     botbox2.postTelegramMsg(timeStamp)
     sense.clear()
 
@@ -156,6 +157,9 @@ sense.stick.direction_right = powerOff
 while True:
    sense.clear()
    greenLed.blink()
+   sense.show_message("ON",text_colour=green)
+   time.sleep(2)
+   sense.clear()
    #Counter variable controls 
    while counter < 21:
         curTime =time.gmtime()
