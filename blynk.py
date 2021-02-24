@@ -4,7 +4,7 @@ import time
 import sys
 
 #Blynk authorisation key
-BLYNK_AUTH = 'ca4QwEA0UPvvkfS1988T6A9UHBE0FuVU'
+BLYNK_AUTH = '<AUTHORISATIONKEY>'
 
 # initialize Blynk
 blynk = blynklib.Blynk(BLYNK_AUTH)

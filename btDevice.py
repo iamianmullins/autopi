@@ -23,7 +23,7 @@ def main():
        blue.off()
        #Known bluetooth device
        #If known device is detected in pan, invoke runAutoPi script
-       result = bluetooth.lookup_name('60:B7:6E:2F:41:CB', timeout=5)
+       result = bluetooth.lookup_name('xx:xx:xx:xx:xx:xx', timeout=5)
        if (result != None):
             green.on()
             time.sleep(2)

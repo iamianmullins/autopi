@@ -1,11 +1,11 @@
 
 // Create an instance of Wia
 // Device secret key
-var wia = require('wia')('d_sk_HolYFwZ6E3J3cjfiEp8gBsmS');
+var wia = require('wia')('x_xx_xxxxxxxxxxxxxxxxxxxxxxxx');
 
 //Blynk credentials and v pin from smartphone app
 var BlynkLib = require('blynk-library');
-var blynk = new BlynkLib.Blynk('ca4QwEA0UPvvkfS1988T6A9UHBE0FuVU');
+var blynk = new BlynkLib.Blynk('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 var v2 = new blynk.VirtualPin(2);
 
 

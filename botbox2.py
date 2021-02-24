@@ -7,10 +7,10 @@ import os
 import getWeather
 
 #Telegram bot token
-bot_token = '1472124370:AAHvfvCVm7HUUf1IFUP7Ny4JpLjImwbRwdU'
+bot_token = '<BOT:TOKEN>'
 
 #autopi dedicated chat, chat ID
-bot_chatID = '707348795'
+bot_chatID = '<CHATID>'
 bot = telegram.Bot(token=bot_token)
 
 

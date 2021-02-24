@@ -9,7 +9,7 @@ from random import randrange
 
 
 #Thinkgpeak write key
-THING_WRITE_API_KEY='4KPZ194HM9OGB81T'
+THING_WRITE_API_KEY='<APIKEY>'
 #Thinkgpeak query string base URL
 baseURL='https://api.thingspeak.com/update?api_key=%s' % THING_WRITE_API_KEY
 

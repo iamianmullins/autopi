@@ -1,6 +1,6 @@
 // Firebase configuration for the AutoPi web app
 const firebaseConfig = {
-  apiKey: "AIzaSyANBKd5TVJovEMUimkxnUVmgXuD1T_9_qc",
+  apiKey: "<APIKEY>",
   authDomain: "autopi-48de4.firebaseapp.com",
   databaseURL: "https://autopi-48de4-default-rtdb.firebaseio.com",
   projectId: "autopi-48de4",
